@@ -1,0 +1,221 @@
+:root {
+	--dark: #232946;
+	--light: #fffffe;
+	--danger: #f25042;
+	--primary: #b8c1ec;
+	--secondary: #eebbc3;
+	--btnprimary: #eebbc3;
+	--btnsecondary: #fffffe;
+	--btntext: #232946;
+}
+body {
+	margin: 0 auto;
+	background-color: var(--dark);
+	overflow-x: hidden;
+	color: var(--light);
+	font-family: Arial, Helvetica, sans-serif;
+}
+main {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70vh;
+	flex-direction: column;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+footer,
+p {
+	text-align: center;
+}
+a {
+	font-size: 20pt;
+	color: var(--dark);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--secondary);
+}
+h1 a {
+	font-size: 22pt;
+	color: var(--light);
+}
+hr {
+	border: none;
+	border-top: 1px solid var(--light);
+}
+nav {
+	background: var(--light);
+	display: flex;
+	align-items: center;
+	padding: 0 0.5rem;
+	top: 0;
+}
+nav h1 {
+	flex: auto;
+	margin: 0;
+}
+nav h1 a {
+	text-decoration: none;
+	padding: 0.25rem 0.5rem;
+}
+nav ul {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+nav ul li a,
+nav ul li span,
+header .action {
+	display: flex;
+	padding: 0.5rem;
+}
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 2.5rem;
+}
+td a,
+footer a {
+	font-size: 12pt;
+	color: var(--light);
+}
+td button {
+	font-size: 12pt;
+	color: var(--light);
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+td button:hover {
+	color: var(--secondary);
+}
+input {
+	padding: 0.5em 1em;
+	outline: none;
+	margin-right: 0.25rem;
+}
+table,
+th,
+td {
+}
+table {
+	width: 100%;
+}
+th,
+td {
+	text-align: center;
+}
+.btn {
+	background-color: var(--btnprimary);
+	padding: 0.5em 1em;
+	outline: none;
+	cursor: pointer;
+	border-radius: 0.2em;
+	color: var(--btntext);
+}
+.btn:hover,
+.btn:focus {
+	background-color: var(--btnsecondary);
+}
+.container {
+	display: flex;
+	margin: auto;
+	margin-top: 5px;
+}
+.content {
+	padding: 0 1rem 1rem;
+}
+.content > header {
+	border-bottom: 1px solid lightgray;
+	display: flex;
+	align-items: flex-end;
+}
+.content > header h1 {
+	flex: auto;
+	margin: 1rem 0 0.25rem 0;
+}
+.flash {
+	margin: 1em 0;
+	padding: 1em;
+	background: var(--primary);
+	border: 1px solid var(--secondary);
+}
+.post > header {
+	display: flex;
+	align-items: flex-end;
+	font-size: 0.85em;
+}
+.post > header > div:first-of-type {
+	flex: auto;
+}
+.post > header h1 {
+	font-size: 1.5em;
+	margin-bottom: 0;
+}
+.post .about {
+	color: slategray;
+	font-style: italic;
+}
+.post .body {
+	white-space: pre-line;
+}
+.content:last-child {
+	margin-bottom: 0;
+}
+.content form {
+	margin: 1em 0;
+	display: flex;
+	flex-direction: column;
+}
+.content label {
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+.content input,
+.content textarea {
+	margin-bottom: 1em;
+}
+.content textarea {
+	min-height: 12em;
+	resize: vertical;
+}
+input.danger {
+	color: var(--danger);
+}
+input[type='submit'] {
+	align-self: start;
+	min-width: 10em;
+}
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.logout {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.artistData {
+	display: flex;
+	align-items: center;
+}
+.songs,
+.albums {
+	display: grid;
+	margin-right: 1rem;
+	margin-left: 1rem;
+}

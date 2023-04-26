@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>{% block title %}{% endblock %} - Music Discovery</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/static/style.css" />
+	</head>
+	<body>
+		<nav class="container navbar" id="navbar">
+			<ul class="home">
+				<li><a href="/">Home</a></li>
+			</ul>
+			<div class="logout">
+				{% if session["username"] %}
+				<ul>
+					<li>
+						<a href="/logout">Logout</a>
+					</li>
+				</ul>
+				{% else %}
+				<ul>
+					<li>
+						<a href="/register">Register</a>
+					</li>
+					<li>
+						<a href="/login">Login</a>
+					</li>
+				</ul>
+				{% endif %}
+			</div>
+		</nav>
+		<h2 class="title">Music Discovery</h2>
+		<main class="container">{% block content %}{% endblock %}</main>
+		<footer>
+			Created by Aaron Thompson, api by Spotify. Find my work on
+			<a href="https://github.com/Endeyr">Github</a>.
+		</footer>
+	</body>
+</html>

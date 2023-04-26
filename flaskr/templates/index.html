@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} {% block header %}
+<h1>{% block title %} Home {% endblock %}</h1>
+{% endblock %} {% block content %}
+<section>
+	<h2>Search for any Artist</h2>
+	<p>Find songs, similar artist, and more!</p>
+	<form action="/search" method="post">
+		<div>
+			<input
+				autocomplete="off"
+				autofocus
+				class=""
+				id="artist"
+				name="artist"
+				placeholder="Artist Name"
+				type="text"
+				required
+			/><button class="btn" type="submit">Search</button>
+		</div>
+	</form>
+</section>
+{% endblock %}

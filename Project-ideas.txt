@@ -1,0 +1,25 @@
+What will your software do? 
+    My software will use the Spotify API to display a users requested artist's info and related artist to the dashboard. Users will be able to login and see their search history
+
+What features will it have? How will it be executed?
+    Login using flask and postgres
+    Api request using Spotify API 
+    Hosted on github pages
+    Styling using my own style guide
+
+What new skills will you need to acquire? 
+    I will need to learn how to use Postgres as well as work with APIs
+
+What topics will you need to research?
+    I need to research how to call APIs and how to connect to a postgres database.
+
+In the world of software, most everything takes longer to implement than you expect. And so it’s not uncommon to accomplish less in a fixed amount of time than you hope. 
+
+What might you consider to be a good outcome for your project? 
+    A good outcome would be if the website works as intended with little to no bugs.
+
+A better outcome? 
+    A better outcome would be that I can add features and stylize the website in a cool way. 
+
+The best outcome?
+    The best outcome would be if I can make an app that I want to use to discover new music and keep up to date with my favorite artist. 

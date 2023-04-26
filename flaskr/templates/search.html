@@ -1,0 +1,59 @@
+{% extends 'layout.html' %} {% block header %}
+<h1>{% block title %} Home {% endblock %}</h1>
+{% endblock %} {% block content %}
+<h1>
+	Artist:
+	<a href="https://open.spotify.com/search/{{ artist_name }}" target="_blank"
+		>{{artist_name}}</a
+	>
+</h1>
+<section class="container">
+	<div class="songs">
+		<h2>Top Songs</h2>
+		<table>
+			{% for idx, song in enumerate(songs) %}
+			<tr class="songs">
+				<td>
+					<a
+						href="https://open.spotify.com/search/{{ song['name'] }}"
+						target="_blank"
+						>{{ song['name'] }}</a
+					>
+				</td>
+			</tr>
+			{% endfor%}
+		</table>
+	</div>
+	<div class="albums">
+		<h2>Top Albums</h2>
+		<table>
+			{% for idx, album in enumerate(albums) %}
+			<tr class="albums">
+				<td id="{{idx}}">
+					<a
+						href="https://open.spotify.com/search/{{ album['name'] }}"
+						target="_blank"
+						>{{ album['name'] }}</a
+					>
+				</td>
+			</tr>
+			{% endfor%}
+		</table>
+	</div>
+</section>
+<section>
+	<h2>Related Artist</h2>
+	<table>
+		{% for idx, artist in enumerate(similar_artists) %}
+		<tr class="related">
+			<form method="post" action="/search">
+				<input type="hidden" name="artist" value="{{ artist['name'] }}" />
+				<td id="{{idx}}">
+					<button type="submit">{{ artist['name'] }}</button>
+				</td>
+			</form>
+		</tr>
+		{% endfor%}
+	</table>
+</section>
+{% endblock %}
