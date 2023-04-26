@@ -1,4 +1,3 @@
-import os
 from spotify_api import (
     get_token,
     search_for_artist,
@@ -10,7 +9,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
-from functools import wraps
+from helpers import login_required
 
 # Configure application
 app = Flask(__name__)
@@ -26,29 +25,6 @@ def get_db_connection():
     conn = sqlite3.connect('users.db')
     conn.row_factory = sqlite3.Row
     return conn
-
-
-def login_required(f):
-    """
-    Decorate routes to require login.
-
-    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
-    """
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get("username") is None:
-            return redirect("/login")
-        return f(*args, **kwargs)
-    return decorated_function
-
-
-# @app.after_request
-# def after_request(response):
-#     """Ensure responses aren't cached"""
-#     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-#     response.headers["Expires"] = 0
-#     response.headers["Pragma"] = "no-cache"
-#     return response
 
 
 @app.route("/")
