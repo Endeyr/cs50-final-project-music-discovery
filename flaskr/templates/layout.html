@@ -33,6 +33,13 @@
 				{% endif %}
 			</div>
 		</nav>
+		{% with messages = get_flashed_messages() %} {% if messages %}
+		<div class="flashes">
+			{% for message in messages %}
+			<div>{{ message }}</div>
+			{% endfor %}
+		</div>
+		{% endif %} {% endwith %}
 		<h2 class="title">Music Discovery</h2>
 		<main class="container">{% block content %}{% endblock %}</main>
 		<footer>

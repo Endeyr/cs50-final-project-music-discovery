@@ -25,7 +25,7 @@ Clone this repository: git clone https://github.com/your-username/spotify-artist
 
 Install the dependencies: pip install -r requirements.txt
 
-Set the environment variables SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET with your Spotify Web API client ID and client secret.
+Set the environment variables SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET with your Spotify Web API client ID and client secret. Set the SECRET_KEY in the .env with a random key.
 
 Run the server: python app.py
 

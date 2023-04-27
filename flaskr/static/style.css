@@ -262,3 +262,9 @@ input[type='submit'] {
 	margin-right: 1rem;
 	margin-left: 1rem;
 }
+.flashes {
+	color: var(--danger);
+	text-align: center;
+	font-size: 20pt;
+	margin-top: 0.25rem;
+}

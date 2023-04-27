@@ -1,3 +1,4 @@
+import os
 from spotify_api import (
     get_token,
     search_for_artist,
@@ -5,14 +6,21 @@ from spotify_api import (
     get_related_artists,
     get_albums_by_artist
 )
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 from helpers import login_required
+from dotenv import load_dotenv
+
 
 # Configure application
 app = Flask(__name__)
+
+# Configure secret key
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+app.secret_key = SECRET_KEY
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -52,6 +60,7 @@ def search():
 
         # Ensure artist was submitted
         if not request.form.get("artist"):
+            flash("Please enter an artist.")
             return render_template("index.html")
 
         try:
@@ -75,6 +84,7 @@ def search():
                     similar_artists = similar_artists_search_result[:5]
 
         except (KeyError, TypeError, ValueError):
+            flash("KeyError, TypeError, ValueError")
             return render_template("index.html")
 
         return render_template("/search.html", songs=songs, similar_artists=similar_artists, enumerate=enumerate, artist_name=artist_name, albums=albums)
@@ -87,31 +97,41 @@ def register():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return render_template("register.html")
+            flash("Please enter a username")
+            return render_template("auth/register.html")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return render_template("register.html")
+            flash("Please enter a password")
+            return render_template("auth/register.html")
 
         # Ensure password was submitted
         elif not request.form.get("confirmation"):
-            return render_template("register.html")
+            flash("Please confirm password")
+            return render_template("auth/register.html")
 
         # Ensure password equal to confirm password
         if (request.form.get("password") != request.form.get("confirmation")):
-            return render_template("register.html")
+            flash("Check if passwords match")
+            return render_template("auth/register.html")
 
         # Insert username and password into database
         hash = generate_password_hash(request.form.get("password"))
 
         try:
             conn = get_db_connection()
-            new_user = conn.execute(
+            cursor = conn.cursor()
+
+            cursor.execute(
                 "INSERT INTO users (username, hash) VALUES (?, ?)",
                 (request.form.get("username"), hash)
             )
 
             conn.commit()
+
+            new_user = cursor.lastrowid
+
+            cursor.close()
             conn.close()
 
             # Remember which user has logged in
@@ -120,7 +140,8 @@ def register():
             return redirect("/")
 
         except:
-            return render_template("auth/register.html")
+            flash("User already registered, please login")
+            return render_template("auth/login.html")
 
     return render_template("auth/register.html")
 
@@ -134,10 +155,12 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
+            flash("Please enter a username")
             return render_template("auth/login.html")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
+            flash("Please enter a password")
             return render_template("auth/login.html")
 
         # Query database for username
@@ -148,6 +171,7 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+            flash("Incorrect username / password")
             return render_template("auth/login.html")
 
         # Remember which user has logged in
