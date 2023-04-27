@@ -17,6 +17,8 @@ This is a web application that allows users to search for Spotify artists and se
 
 It uses the Spotify Web API to fetch the artist information and render it on the web page using Jinja2 templates, Flask, and Python.
 
+Explanation of the app here: https://youtu.be/1iY3AhAjE50
+
 ## Installation
 
 To run this application on your local machine, follow these steps:
